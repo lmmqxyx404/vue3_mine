@@ -1,0 +1,3 @@
+# 配置 multi-package repositorie
+packages:
+ - 'packages/*'

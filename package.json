@@ -1,7 +1,10 @@
 {
+  "private":"true",
   "name": "vue3_mine",
+  "packageManager": "pnpm@7.26.2",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "imitation of Vue3-core",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
