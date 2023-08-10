@@ -11,17 +11,35 @@ importers:
       esbuild:
         specifier: ^0.17.4
         version: registry.npmmirror.com/esbuild@0.17.4
+      esbuild-plugin-polyfill-node:
+        specifier: ^0.2.0
+        version: registry.npmmirror.com/esbuild-plugin-polyfill-node@0.2.0(esbuild@0.17.4)
       minimist:
         specifier: ^1.2.0
         version: registry.npmmirror.com/minimist@1.2.0
       prettier:
         specifier: ^2.7.1
         version: registry.npmmirror.com/prettier@2.7.1
+      typescript:
+        specifier: ^5.1.6
+        version: registry.npmmirror.com/typescript@5.1.6
       vite:
         specifier: ^4.3.0
         version: registry.npmmirror.com/vite@4.3.0
 
   packages/complier-core: {}
+
+  packages/runtime-dom:
+    dependencies:
+      '@vue/runtime-core':
+        specifier: 3.3.4
+        version: registry.npmmirror.com/@vue/runtime-core@3.3.4
+      '@vue/shared':
+        specifier: 3.3.4
+        version: link:../shared
+      csstype:
+        specifier: ^3.1.1
+        version: registry.npmmirror.com/csstype@3.1.1
 
   packages/shared: {}
 
@@ -513,6 +531,54 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/@jspm/core@2.0.1:
+    resolution: {integrity: sha512-Lg3PnLp0QXpxwLIAuuJboLeRaIhrgJjeuh797QADg3xz8wGLugQOS5DpsE8A6i6Adgzf+bacllkKZG3J0tGfDw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@jspm/core/-/core-2.0.1.tgz}
+    name: '@jspm/core'
+    version: 2.0.1
+    dev: true
+
+  registry.npmmirror.com/@vue/reactivity@3.3.4:
+    resolution: {integrity: sha512-kLTDLwd0B1jG08NBF3R5rqULtv/f8x3rOFByTDz4J53ttIQEDmALqKqXY0J+XQeN0aV2FBxY8nJDf88yvOPAqQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/reactivity/-/reactivity-3.3.4.tgz}
+    name: '@vue/reactivity'
+    version: 3.3.4
+    dependencies:
+      '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.4
+    dev: false
+
+  registry.npmmirror.com/@vue/runtime-core@3.3.4:
+    resolution: {integrity: sha512-R+bqxMN6pWO7zGI4OMlmvePOdP2c93GsHFM/siJI7O2nxFRzj55pLwkpCedEY+bTMgp5miZ8CxfIZo3S+gFqvA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/runtime-core/-/runtime-core-3.3.4.tgz}
+    name: '@vue/runtime-core'
+    version: 3.3.4
+    dependencies:
+      '@vue/reactivity': registry.npmmirror.com/@vue/reactivity@3.3.4
+      '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.4
+    dev: false
+
+  registry.npmmirror.com/@vue/shared@3.3.4:
+    resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/shared/-/shared-3.3.4.tgz}
+    name: '@vue/shared'
+    version: 3.3.4
+    dev: false
+
+  registry.npmmirror.com/csstype@3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/-/csstype-3.1.1.tgz}
+    name: csstype
+    version: 3.1.1
+    dev: false
+
+  registry.npmmirror.com/esbuild-plugin-polyfill-node@0.2.0(esbuild@0.17.4):
+    resolution: {integrity: sha512-rpCoK4mag0nehBtFlFMLSuL9bNBLEh8h3wZ/FsrJEDompA/AwOqInx6Xow01+CXAcvZYhkoJ0SIZiS37qkecDA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-plugin-polyfill-node/-/esbuild-plugin-polyfill-node-0.2.0.tgz}
+    id: registry.npmmirror.com/esbuild-plugin-polyfill-node/0.2.0
+    name: esbuild-plugin-polyfill-node
+    version: 0.2.0
+    peerDependencies:
+      esbuild: '*'
+    dependencies:
+      '@jspm/core': registry.npmmirror.com/@jspm/core@2.0.1
+      esbuild: registry.npmmirror.com/esbuild@0.17.4
+      import-meta-resolve: registry.npmmirror.com/import-meta-resolve@2.2.2
+    dev: true
+
   registry.npmmirror.com/esbuild@0.17.19:
     resolution: {integrity: sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild/-/esbuild-0.17.19.tgz}
     name: esbuild
@@ -587,6 +653,12 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/import-meta-resolve@2.2.2:
+    resolution: {integrity: sha512-f8KcQ1D80V7RnqVm+/lirO9zkOxjGxhaTC1IPrBGd3MEfNgmNG67tSUO9gTi2F3Blr2Az6g1vocaxzkVnWl9MA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/import-meta-resolve/-/import-meta-resolve-2.2.2.tgz}
+    name: import-meta-resolve
+    version: 2.2.2
+    dev: true
+
   registry.npmmirror.com/minimist@1.2.0:
     resolution: {integrity: sha512-7Wl+Jz+IGWuSdgsQEJ4JunV0si/iMhg42MnQQG6h1R6TNeVenp4U9x5CC5v/gYqz/fENLQITAWXidNtVL0NNbw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimist/-/minimist-1.2.0.tgz}
     name: minimist
@@ -641,6 +713,14 @@ packages:
     name: source-map-js
     version: 1.0.2
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  registry.npmmirror.com/typescript@5.1.6:
+    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/-/typescript-5.1.6.tgz}
+    name: typescript
+    version: 5.1.6
+    engines: {node: '>=14.17'}
+    hasBin: true
     dev: true
 
   registry.npmmirror.com/vite@4.3.0:
