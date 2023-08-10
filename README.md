@@ -17,3 +17,12 @@ deal with common js in node.
 
 ## global
 share the common functions
+
+# the diffeerence between 2 and 3
+## mvvm implementation
+in 2, use defineProperty.
+in 3, use Proxy.
+
+## tree shaking in 3
+This can reduce the code size.
+if you use `watch` in 3, then only `watch` could be imported in the js file.
