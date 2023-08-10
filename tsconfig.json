@@ -1,29 +1,39 @@
 {
-  "private": true,
-  "name": "vue3_mine",
-  "packageManager": "pnpm@8.6.2",
-  "type": "module",
-  "version": "3.0.0",
-  "description": "imitation of Vue3-core",
-  "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
-    "format": "prettier --write --cache --parser typescript \"**/*.[tj]s?(x)\"",
-    "format-check": "prettier --check --cache --parser typescript \"**/*.[tj]s?(x)\""
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "temp",
+    "sourceMap": false,
+    "target": "es2016",
+    "newLine": "LF",
+    "useDefineForClassFields": false,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "types": ["vitest/globals", "puppeteer", "node"],
+    "rootDir": ".",
+    "paths": {
+      "@vue/compat": ["packages/vue-compat/src"],
+      "@vue/*": ["packages/*/src"],
+      "vue": ["packages/vue/src"]
+    }
   },
-  "keywords": [],
-  "engines": {
-    "node": ">=16.11.0"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "esbuild": "^0.17.4",
-    "esbuild-plugin-polyfill-node": "^0.2.0",
-    "minimist": "^1.2.0",
-    "prettier": "^2.7.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.3.0"
-    
-  }
+  "include": [
+    "packages/global.d.ts",
+    "packages/*/src",
+    "packages/runtime-dom/types/jsx.d.ts",
+    "packages/*/__tests__",
+    "packages/dts-test",
+    "packages/vue/jsx-runtime",
+    "scripts/setupVitest.ts"
+  ]
 }
