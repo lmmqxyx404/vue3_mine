@@ -7,9 +7,20 @@
   "description": "imitation of Vue3-core",
   "scripts": {
     "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "format": "prettier --write --cache --parser typescript \"**/*.[tj]s?(x)\"",
+    "format-check": "prettier --check --cache --parser typescript \"**/*.[tj]s?(x)\""
   },
   "keywords": [],
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "eslint",
+      "prettier --parser=typescript --write"
+    ]
+  },
   "engines": {
     "node": ">=16.11.0"
   },
