@@ -29,11 +29,20 @@ importers:
 
   packages/complier-core: {}
 
+  packages/runtime-core:
+    dependencies:
+      '@vue/reactivity':
+        specifier: 3.3.4
+        version: registry.npmmirror.com/@vue/reactivity@3.3.4
+      '@vue/shared':
+        specifier: 3.3.4
+        version: link:../shared
+
   packages/runtime-dom:
     dependencies:
       '@vue/runtime-core':
         specifier: 3.3.4
-        version: registry.npmmirror.com/@vue/runtime-core@3.3.4
+        version: link:../runtime-core
       '@vue/shared':
         specifier: 3.3.4
         version: link:../shared
@@ -542,15 +551,6 @@ packages:
     name: '@vue/reactivity'
     version: 3.3.4
     dependencies:
-      '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.4
-    dev: false
-
-  registry.npmmirror.com/@vue/runtime-core@3.3.4:
-    resolution: {integrity: sha512-R+bqxMN6pWO7zGI4OMlmvePOdP2c93GsHFM/siJI7O2nxFRzj55pLwkpCedEY+bTMgp5miZ8CxfIZo3S+gFqvA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/runtime-core/-/runtime-core-3.3.4.tgz}
-    name: '@vue/runtime-core'
-    version: 3.3.4
-    dependencies:
-      '@vue/reactivity': registry.npmmirror.com/@vue/reactivity@3.3.4
       '@vue/shared': registry.npmmirror.com/@vue/shared@3.3.4
     dev: false
 
