@@ -39,3 +39,7 @@ not a common js file.
 
 if you want to use common js file. You'd better use .cjs file or use the following syntax.
 `const require = createRequire(import.meta.url)`
+
+## devDependencies
+`@babel/parser`: used in scripts/const-enum
+`MagicString`: used in scripts/const-enum

@@ -17,6 +17,9 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^15.0.1
         version: registry.npmmirror.com/@rollup/plugin-node-resolve@15.0.1(rollup@3.28.0)
+      '@vue/consolidate':
+        specifier: 0.17.3
+        version: registry.npmmirror.com/@vue/consolidate@0.17.3
       chalk:
         specifier: ^4.1.0
         version: registry.npmmirror.com/chalk@4.1.0
@@ -686,6 +689,13 @@ packages:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/resolve/-/resolve-1.20.2.tgz}
     name: '@types/resolve'
     version: 1.20.2
+    dev: true
+
+  registry.npmmirror.com/@vue/consolidate@0.17.3:
+    resolution: {integrity: sha512-nl0SWcTMzaaTnJ5G6V8VlMDA1CVVrNnaQKF1aBZU3kXtjgU9jtHMsEAsgjoRUx+T0EVJk9TgbmxGhK3pOk22zw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/consolidate/-/consolidate-0.17.3.tgz}
+    name: '@vue/consolidate'
+    version: 0.17.3
+    engines: {node: '>= 0.12.0'}
     dev: true
 
   registry.npmmirror.com/ansi-styles@4.3.0:
