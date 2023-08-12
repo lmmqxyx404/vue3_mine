@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // 根路径
     "baseUrl": ".",
     "outDir": "temp",
     "sourceMap": false,
@@ -7,6 +8,7 @@
     "newLine": "LF",
     "useDefineForClassFields": false,
     "module": "esnext",
+    // 包处理方式
     "moduleResolution": "bundler",
     "allowJs": false,
     "strict": true,
@@ -20,6 +22,7 @@
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "types": ["vitest/globals", "puppeteer", "node"],
+    // 解决 packages 之间互相共享
     "rootDir": ".",
     "paths": {
       "@vue/compat": ["packages/vue-compat/src"],

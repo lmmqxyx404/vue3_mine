@@ -2,7 +2,7 @@
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path, { dirname } from 'node:path'
-import { constEnum } from './scripts/const-enum'
+import { constEnum } from './scripts/const-enum.js'
 import chalk from 'chalk'
 import commonJS from '@rollup/plugin-commonjs'
 import polyfillNode from 'rollup-plugin-polyfill-node'
@@ -11,7 +11,10 @@ import json from '@rollup/plugin-json'
 import alias from '@rollup/plugin-alias'
 import esbuild from 'rollup-plugin-esbuild'
 import { entries } from './scripts/aliases.js'
+import terser from '@rollup/plugin-terser'
 
+// 不能用默认的
+import replace from '@rollup/plugin-replace'
 // 必须指定环境
 if (!process.env.TARGET) {
   throw new Error('TARGET package must be specified via --environment flag.')
@@ -80,6 +83,22 @@ const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
 const packageConfigs = process.env.PROD_ONLY
   ? []
   : packageFormats.map(format => createConfig(format, outputConfigs[format]))
+
+if (process.env.NODE_ENV === 'production') {
+  packageFormats.forEach(format => {
+    if (packageOptions.prod === false) {
+      return
+    }
+    if (format === 'cjs') {
+      packageConfigs.push(createProductionConfig(format))
+    }
+    if (/^(global|esm-browser)(-runtime)?/.test(format)) {
+      packageConfigs.push(createMinifiedConfig(format))
+    }
+  })
+}
+
+export default packageConfigs
 
 function createConfig(format, output, plugins = []) {
   if (!output) {
@@ -299,4 +318,33 @@ function createConfig(format, output, plugins = []) {
       moduleSideEffects: false
     }
   }
+}
+
+
+
+function createProductionConfig(format) {
+  return createConfig(format, {
+    file: resolve(`dist/${name}.${format}.prod.js`),
+    format: outputConfigs[format].format
+  })
+}
+
+function createMinifiedConfig(format) {
+  return createConfig(
+    format,
+    {
+      file: outputConfigs[format].file.replace(/\.js$/, '.prod.js'),
+      format: outputConfigs[format].format
+    },
+    [
+      terser({
+        module: /^esm/.test(format),
+        compress: {
+          ecma: 2015,
+          pure_getters: true
+        },
+        safari10: true
+      })
+    ]
+  )
 }

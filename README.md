@@ -1,6 +1,10 @@
 # vue3_mine
 it is a projetc made by my step-by-step process of learning Vue3.
 
+# about the project directory
+
+
+
 # Analysis the Vue3 composition
 There are 3 parts consisting the Vue3--```compiler``` ```runtime``` ```reactive```
 
@@ -43,3 +47,8 @@ if you want to use common js file. You'd better use .cjs file or use the followi
 ## devDependencies
 `@babel/parser`: used in scripts/const-enum
 `MagicString`: used in scripts/const-enum
+
+
+# notes
+## rollup to build a package
+Pay attention to the package name.
