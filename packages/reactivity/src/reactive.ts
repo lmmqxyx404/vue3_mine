@@ -1,3 +1,27 @@
+import { Ref } from "."
+
+// 用于新建 new Proxy 对象
+const enum TargetType {
+  INVALID = 0,
+  COMMON = 1,
+  COLLECTION = 2
+}
+
+function targetTypeMap(rawType: string) {
+  switch (rawType) {
+    case 'Object':
+    case 'Array':
+      return TargetType.COMMON
+    case 'Map':
+    case 'Set':
+    case 'WeakMap':
+    case 'WeakSet':
+      return TargetType.COLLECTION
+    default:
+      return TargetType.INVALID
+  }
+}
+
 export const enum ReactiveFlags {
   SKIP = '__v_skip',
   IS_REACTIVE = '__v_isReactive',
@@ -87,3 +111,12 @@ export function isReactive(value: unknown): boolean {
   }
   return !!(value && (value as Target)[ReactiveFlags.IS_REACTIVE])
 }
+
+export declare const ShallowReactiveMarker: unique symbol
+
+
+
+// only unwrap nested ref
+export type UnwrapNestedRefs<T> = T extends Ref ? T : UnwrapRefSimple<T>
+
+export function reactive<T extends Object>(target:T):Unw

@@ -34,7 +34,10 @@ const args = minimist(process.argv.slice(2))
 
 const targets = args._
 const formats = args.formats || args.f
+// 指明运行环境
 const devOnly = args.devOnly || args.d
+console.log(devOnly)
+
 const prodOnly = !devOnly && (args.prodOnly || args.p)
 const buildTypes = args.withTypes || args.t
 const sourceMap = args.sourcemap || args.s
@@ -54,6 +57,7 @@ async function run() {
     const resolvedTargets = targets.length
       ? fuzzyMatchTarget(targets, buildAllMatching)
       : allTargets
+    console.log(resolvedTargets)
     await buildAll(resolvedTargets)
   } finally {
     removeCache()
