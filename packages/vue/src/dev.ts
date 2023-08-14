@@ -6,7 +6,5 @@ export function initDev() {
           `Make sure to use the production build (*.prod.js) when deploying for production.`
       )
     }
-
-    
   }
 }

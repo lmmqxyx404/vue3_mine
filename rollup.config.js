@@ -320,8 +320,6 @@ function createConfig(format, output, plugins = []) {
   }
 }
 
-
-
 function createProductionConfig(format) {
   return createConfig(format, {
     file: resolve(`dist/${name}.${format}.prod.js`),

@@ -47,8 +47,6 @@ const builtInSymbols = new Set(
 const get = /*#__PURE__*/ createGetter()
 const readonlyGet = /*#__PURE__*/ createGetter(true)
 
-
-
 const arrayInstrumentations = /*#__PURE__*/ createArrayInstrumentations()
 
 function createArrayInstrumentations() {
@@ -89,7 +87,6 @@ function hasOwnProperty(this: object, key: string) {
   track(obj, TrackOpTypes.HAS, key)
   return obj.hasOwnProperty(key)
 }
-
 
 function createGetter(isReadonly = false, shallow = false) {
   return function get(target: Target, key: string | symbol, receiver: object) {
