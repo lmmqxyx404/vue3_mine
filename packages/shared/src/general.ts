@@ -1,5 +1,10 @@
 import { makeMap } from './makeMap'
 
+const onRE = /^on[^a-z]/
+export const isOn = (key: string) => onRE.test(key)
+
+export const isModelListener = (key: string) => key.startsWith('onUpdate:')
+
 const hasOwnProperty = Object.prototype.hasOwnProperty
 export const hasOwn = (
   val: object,
@@ -59,6 +64,14 @@ const cacheStringFunction = <T extends (str: string) => string>(fn: T): T => {
     return hit || (cache[str] = fn(str))
   }) as T
 }
+
+const hyphenateRE = /\B([A-Z])/g
+/**
+ * @private
+ */
+export const hyphenate = cacheStringFunction((str: string) =>
+  str.replace(hyphenateRE, '-$1').toLowerCase()
+)
 
 /**
  * @private

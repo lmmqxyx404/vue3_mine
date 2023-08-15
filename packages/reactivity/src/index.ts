@@ -10,4 +10,4 @@ export {
 } from './computed'
 // 从 reactive.ts 导出四个方法. 本质上都是给 createReactiveObject() 处理。
 // 1. 是否只读  2. 是否深层
-export { reactive, readonly } from './reactive'
+export { reactive, readonly, ReactiveFlags /* @remove */ } from './reactive'
