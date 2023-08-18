@@ -6,9 +6,21 @@
   "module": "dist/runtime-dom.esm-bundler.js",
   "types": "dist/runtime-dom.d.ts",
   "unpkg": "dist/runtime-dom.global.js",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "sideEffects": false,
+  "buildOptions": {
+    "name": "VueRuntimeDOM",
+    "formats": [
+      "esm-bundler",
+      "esm-browser",
+      "cjs",
+      "global"
+    ]
+  },
   "dependencies": {
-    "@vue/shared": "3.3.4",
-    "@vue/runtime-core": "3.3.4",
     "csstype": "^3.1.1"
   }
 }

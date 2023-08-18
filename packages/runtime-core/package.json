@@ -10,6 +10,15 @@
     "dist"
   ],
   "sideEffects": false,
+  "buildOptions": {
+    "name": "VueRuntimeDOM",
+    "formats": [
+      "esm-bundler",
+      "esm-browser",
+      "cjs",
+      "global"
+    ]
+  },
   "dependencies": {
     "@vue/shared": "3.3.4",
     "@vue/reactivity": "3.3.4"

@@ -72,6 +72,8 @@ importers:
         specifier: ^4.3.0
         version: registry.npmmirror.com/vite@4.3.0
 
+  packages/complier-core: {}
+
   packages/reactivity: {}
 
   packages/runtime-core:
@@ -85,12 +87,6 @@ importers:
 
   packages/runtime-dom:
     dependencies:
-      '@vue/runtime-core':
-        specifier: 3.3.4
-        version: link:../runtime-core
-      '@vue/shared':
-        specifier: 3.3.4
-        version: link:../shared
       csstype:
         specifier: ^3.1.1
         version: registry.npmmirror.com/csstype@3.1.1
