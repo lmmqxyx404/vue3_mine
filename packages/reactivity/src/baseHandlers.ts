@@ -26,7 +26,8 @@ import {
   hasChanged,
   isArray,
   isIntegerKey,
-  makeMap
+  makeMap,
+  extend
 } from '@vue/shared'
 import { isRef } from './ref'
 import { warn } from './warning'
@@ -45,6 +46,7 @@ const builtInSymbols = new Set(
 )
 
 const get = /*#__PURE__*/ createGetter()
+const shallowGet = /*#__PURE__*/ createGetter(false, true)
 const readonlyGet = /*#__PURE__*/ createGetter(true)
 
 const arrayInstrumentations = /*#__PURE__*/ createArrayInstrumentations()
@@ -155,6 +157,7 @@ function createGetter(isReadonly = false, shallow = false) {
 }
 
 const set = /*#__PURE__*/ createSetter()
+const shallowSet= /*#__PURE__*/ createSetter(true)
 
 function createSetter(shallow = false) {
   return function set(
@@ -249,3 +252,5 @@ export const readonlyHandlers: ProxyHandler<object> = {
     return true
   }
 }
+
+export const shallowReactiveHandlers=/*#__PURE__*/ extend({},mutableHandlers,{get:shallowGet,set:shallowSet})
