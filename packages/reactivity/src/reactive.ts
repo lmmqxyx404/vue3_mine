@@ -1,8 +1,9 @@
 import { isObject, toRawType } from '@vue/shared'
-import { mutableHandlers, readonlyHandlers } from './baseHandlers'
+import { mutableHandlers, readonlyHandlers, shallowReactiveHandlers } from './baseHandlers'
 import {
   mutableCollectionHandlers,
-  readonlyCollectionHandlers
+  readonlyCollectionHandlers,
+  shallowCollectionHandlers
 } from './collectionHandlers'
 import type { UnwrapRefSimple, Ref } from './ref'
 
@@ -93,6 +94,42 @@ export function reactive(target: object) {
 }
 
 export declare const ShallowReactiveMarker: unique symbol
+
+export type ShallowReactive<T>=T&{[ShallowReactiveMarker]?:true}
+
+/**
+ * Shallow version of {@link reactive()}.
+ *
+ * Unlike {@link reactive()}, there is no deep conversion: only root-level
+ * properties are reactive for a shallow reactive object. Property values are
+ * stored and exposed as-is - this also means properties with ref values will
+ * not be automatically unwrapped.
+ *
+ * @example
+ * ```js
+ * const state = shallowReactive({
+ *   foo: 1,
+ *   nested: {
+ *     bar: 2
+ *   }
+ * })
+ *
+ * // mutating state's own properties is reactive
+ * state.foo++
+ *
+ * // ...but does not convert nested objects
+ * isReactive(state.nested) // false
+ *
+ * // NOT reactive
+ * state.nested.bar++
+ * ```
+ *
+ * @param target - The source object.
+ * @see {@link https://vuejs.org/api/reactivity-advanced.html#shallowreactive}
+ */
+export function shallowReactive<T extends object>(target:T):ShallowReactive<T>{
+  return createReactiveObject(target,false,shallowReactiveHandlers,shallowCollectionHandlers,shallowReactiveMap)
+}
 
 type Primitive = string | number | boolean | bigint | symbol | undefined | null
 type Builtin = Primitive | Function | Date | Error | RegExp
