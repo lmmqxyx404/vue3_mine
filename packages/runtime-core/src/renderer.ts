@@ -4,8 +4,14 @@ import { createHydrationFunctions } from "./hydration"
 
 export interface Renderer<HostElement=RendererElement>{
   render:RootRenderFunction<HostElement>,
-  createApp:CreateApp
+  createApp:CreateAppFunction<HostElement>
 }
+
+export type RootRenderFunction<HostElement = RendererElement> = (
+  vnode: VNode | null,
+  container: HostElement,
+  isSVG?: boolean
+) => void
 
 export interface HydrationRenderer extends Renderer<Element | ShadowRoot> {
   hydrate: RootHydrateFunction

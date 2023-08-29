@@ -72,8 +72,6 @@ importers:
         specifier: ^4.3.0
         version: registry.npmmirror.com/vite@4.3.0
 
-  packages/complier-core: {}
-
   packages/reactivity: {}
 
   packages/runtime-core:

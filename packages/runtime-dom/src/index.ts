@@ -22,7 +22,7 @@ function ensureRenderer() {
       renderer ||
       /* 下面括号中的表达式里面的函数
           createRenderer<Node, Element | ShadowRoot>
-         
+         会约束函数参数的数据类型
       */
       (renderer = createRenderer<Node, Element | ShadowRoot>(rendererOptions))
     )
