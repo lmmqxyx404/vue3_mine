@@ -1,13 +1,9 @@
-/*
- * @Author: lmmqxyx
- * @Date: 2023-08-19 11:34:50
- * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-02 23:27:25
- * @FilePath: /vue3_mine/packages/runtime-core/src/apiCreateApp.ts
- * @Description: 
- */
-import { Component, Data } from "./component";
+
+import { InjectionKey } from "./apiInject";
+import { Component, ComponentInternalInstance, ConcreteComponent, Data } from "./component";
 import { ComponentOptions } from "./componentOptions";
+import { ComponentPublicInstance } from "./componentPublicInstance";
+import { Directive } from "./directives";
 
 export interface App<HostElement = any> {
   version: string
@@ -114,3 +110,42 @@ export type Plugin<Options = any[]> =
   | {
       install: PluginInstallFunction<Options>
     }
+
+
+    export interface AppContext {
+      app: App // for devtools
+      config: AppConfig
+      mixins: ComponentOptions[]
+      components: Record<string, Component>
+      directives: Record<string, Directive>
+      provides: Record<string | symbol, any>
+    
+      /**
+       * Cache for merged/normalized component options
+       * Each app instance has its own cache because app-level global mixins and
+       * optionMergeStrategies can affect merge behavior.
+       * @internal
+       */
+      optionsCache: WeakMap<ComponentOptions, MergedComponentOptions>
+      /**
+       * Cache for normalized props options
+       * @internal
+       */
+      propsCache: WeakMap<ConcreteComponent, NormalizedPropsOptions>
+      /**
+       * Cache for normalized emits options
+       * @internal
+       */
+      emitsCache: WeakMap<ConcreteComponent, ObjectEmitsOptions | null>
+      /**
+       * HMR only
+       * @internal
+       */
+      reload?: () => void
+      /**
+       * v2 compat only
+       * @internal
+       */
+      filters?: Record<string, Function>
+    }
+    

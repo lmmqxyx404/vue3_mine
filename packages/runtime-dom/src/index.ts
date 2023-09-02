@@ -2,7 +2,7 @@
  * @Author: lmmqxyx
  * @Date: 2023-09-02 23:21:09
  * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-02 23:21:54
+ * @LastEditTime: 2023-09-02 23:50:29
  * @FilePath: /vue3_mine/packages/runtime-dom/src/index.ts
  * @Description: 
  */
@@ -11,16 +11,17 @@ import { Renderer, createRenderer } from 'packages/runtime-core/src/renderer'
 import { nodeOps } from './nodeOps'
 import { patchProp } from './patchProp'
 import { extend } from "@vue/shared"
+import { CreateAppFunction } from 'packages/runtime-core/src/apiCreateApp'
 
 let renderer:Renderer<Element>
 
 
-export const createApp=((...args: any)=>{
+export const createApp=((...args)=>{
     // 注意类型
     const app=ensureRenderer().createApp(...args)
 
     return app
-})
+}) as CreateAppFunction<Element>
 
 
 const rendererOptions = /*#__PURE__*/ extend({ patchProp }, nodeOps)
