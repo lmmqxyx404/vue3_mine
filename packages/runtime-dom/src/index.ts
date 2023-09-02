@@ -1,5 +1,13 @@
+/*
+ * @Author: lmmqxyx
+ * @Date: 2023-09-02 23:21:09
+ * @LastEditors: lmmqxyx
+ * @LastEditTime: 2023-09-02 23:21:54
+ * @FilePath: /vue3_mine/packages/runtime-dom/src/index.ts
+ * @Description: 
+ */
 
-import { createRenderer } from 'packages/runtime-core/src/renderer'
+import { Renderer, createRenderer } from 'packages/runtime-core/src/renderer'
 import { nodeOps } from './nodeOps'
 import { patchProp } from './patchProp'
 import { extend } from "@vue/shared"

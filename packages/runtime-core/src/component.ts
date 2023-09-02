@@ -1,3 +1,11 @@
+/*
+ * @Author: lmmqxyx
+ * @Date: 2023-08-18 22:23:58
+ * @LastEditors: lmmqxyx
+ * @LastEditTime: 2023-09-02 23:25:16
+ * @FilePath: /vue3_mine/packages/runtime-core/src/component.ts
+ * @Description: 
+ */
 
 type CompileFunction = (
   template: string | object,
@@ -50,3 +58,6 @@ export type Component<
 > =
   | ConcreteComponent<Props, RawBindings, D, C, M>
   | ComponentPublicInstanceConstructor<Props>
+
+
+export type Data = Record<string, unknown>
