@@ -1,3 +1,11 @@
+/*
+ * @Author: lmmqxyx
+ * @Date: 2023-08-18 22:23:58
+ * @LastEditors: lmmqxyx
+ * @LastEditTime: 2023-09-02 23:54:43
+ * @FilePath: /vue3_mine/packages/runtime-core/src/componentOptions.ts
+ * @Description: 
+ */
 import { ComputedGetter, WritableComputedOptions } from '@vue/reactivity'
 
 export type ComputedOptions = Record<
@@ -59,3 +67,17 @@ export type ComponentOptionsMixin = ComponentOptionsBase<
   any,
   any
 >
+
+
+/**
+ * Subset of compiler options that makes sense for the runtime.
+ */
+export interface RuntimeCompilerOptions {
+  isCustomElement?: (tag: string) => boolean
+  whitespace?: 'preserve' | 'condense'
+  comments?: boolean
+  delimiters?: [string, string]
+}
+
+export type MergedComponentOptions = ComponentOptions &
+  MergedComponentOptionsOverride

@@ -1,8 +1,16 @@
+/*
+ * @Author: lmmqxyx
+ * @Date: 2023-08-19 11:34:50
+ * @LastEditors: lmmqxyx
+ * @LastEditTime: 2023-09-02 23:54:55
+ * @FilePath: /vue3_mine/packages/runtime-core/src/apiCreateApp.ts
+ * @Description: 
+ */
 
 import { InjectionKey } from "./apiInject";
 import { Component, ComponentInternalInstance, ConcreteComponent, Data } from "./component";
-import { ComponentOptions } from "./componentOptions";
-import { ComponentPublicInstance } from "./componentPublicInstance";
+import { ComponentOptions, MergedComponentOptions, RuntimeCompilerOptions } from "./componentOptions";
+import { ComponentCustomProperties, ComponentPublicInstance } from "./componentPublicInstance";
 import { Directive } from "./directives";
 
 export interface App<HostElement = any> {
@@ -55,6 +63,8 @@ export interface App<HostElement = any> {
    */
   _createRoot?(options: ComponentOptions): ComponentPublicInstance
 }
+
+export type OptionMergeFunction = (to: unknown, from: unknown) => any
 
 export type CreateAppFunction<HostElement> = (
     rootComponent: Component,
