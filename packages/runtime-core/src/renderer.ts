@@ -1,10 +1,10 @@
-import { createHydrationFunctions } from "./hydration"
+import { Component, Data } from './component'
+import { RootHydrateFunction, createHydrationFunctions } from './hydration'
+import { VNode } from './vnode'
 
-
-
-export interface Renderer<HostElement=RendererElement>{
-  render:RootRenderFunction<HostElement>,
-  createApp:CreateAppFunction<HostElement>
+export interface Renderer<HostElement = RendererElement> {
+  render: RootRenderFunction<HostElement>
+  createApp: CreateAppFunction<HostElement>
 }
 
 export type RootRenderFunction<HostElement = RendererElement> = (

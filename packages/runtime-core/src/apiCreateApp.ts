@@ -2,16 +2,30 @@
  * @Author: lmmqxyx
  * @Date: 2023-08-19 11:34:50
  * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-02 23:54:55
+ * @LastEditTime: 2023-09-03 16:53:33
  * @FilePath: /vue3_mine/packages/runtime-core/src/apiCreateApp.ts
- * @Description: 
+ * @Description:
  */
 
-import { InjectionKey } from "./apiInject";
-import { Component, ComponentInternalInstance, ConcreteComponent, Data } from "./component";
-import { ComponentOptions, MergedComponentOptions, RuntimeCompilerOptions } from "./componentOptions";
-import { ComponentCustomProperties, ComponentPublicInstance } from "./componentPublicInstance";
-import { Directive } from "./directives";
+import { InjectionKey } from './apiInject'
+import {
+  Component,
+  ComponentInternalInstance,
+  ConcreteComponent,
+  Data
+} from './component'
+import { ObjectEmitsOptions } from './componentEmits'
+import {
+  ComponentOptions,
+  MergedComponentOptions,
+  RuntimeCompilerOptions
+} from './componentOptions'
+import { NormalizedPropsOptions } from './componentProps'
+import {
+  ComponentCustomProperties,
+  ComponentPublicInstance
+} from './componentPublicInstance'
+import { Directive } from './directives'
 
 export interface App<HostElement = any> {
   version: string
@@ -67,49 +81,48 @@ export interface App<HostElement = any> {
 export type OptionMergeFunction = (to: unknown, from: unknown) => any
 
 export type CreateAppFunction<HostElement> = (
-    rootComponent: Component,
-    rootProps?: Data | null
-  ) => App<HostElement>
-  
-  export interface AppConfig {
-    // @private
-    readonly isNativeTag?: (tag: string) => boolean
-  
-    performance: boolean
-    optionMergeStrategies: Record<string, OptionMergeFunction>
-    globalProperties: ComponentCustomProperties & Record<string, any>
-    errorHandler?: (
-      err: unknown,
-      instance: ComponentPublicInstance | null,
-      info: string
-    ) => void
-    warnHandler?: (
-      msg: string,
-      instance: ComponentPublicInstance | null,
-      trace: string
-    ) => void
-  
-    /**
-     * Options to pass to `@vue/compiler-dom`.
-     * Only supported in runtime compiler build.
-     */
-    compilerOptions: RuntimeCompilerOptions
-  
-    /**
-     * @deprecated use config.compilerOptions.isCustomElement
-     */
-    isCustomElement?: (tag: string) => boolean
-  
-    // TODO remove in 3.4
-    /**
-     * Temporary config for opt-in to unwrap injected refs.
-     * @deprecated this no longer has effect. 3.3 always unwraps injected refs.
-     */
-    unwrapInjectedRef?: boolean
-  }
+  rootComponent: Component,
+  rootProps?: Data | null
+) => App<HostElement>
 
+export interface AppConfig {
+  // @private
+  readonly isNativeTag?: (tag: string) => boolean
 
-  type PluginInstallFunction<Options> = Options extends unknown[]
+  performance: boolean
+  optionMergeStrategies: Record<string, OptionMergeFunction>
+  globalProperties: ComponentCustomProperties & Record<string, any>
+  errorHandler?: (
+    err: unknown,
+    instance: ComponentPublicInstance | null,
+    info: string
+  ) => void
+  warnHandler?: (
+    msg: string,
+    instance: ComponentPublicInstance | null,
+    trace: string
+  ) => void
+
+  /**
+   * Options to pass to `@vue/compiler-dom`.
+   * Only supported in runtime compiler build.
+   */
+  compilerOptions: RuntimeCompilerOptions
+
+  /**
+   * @deprecated use config.compilerOptions.isCustomElement
+   */
+  isCustomElement?: (tag: string) => boolean
+
+  // TODO remove in 3.4
+  /**
+   * Temporary config for opt-in to unwrap injected refs.
+   * @deprecated this no longer has effect. 3.3 always unwraps injected refs.
+   */
+  unwrapInjectedRef?: boolean
+}
+
+type PluginInstallFunction<Options> = Options extends unknown[]
   ? (app: App, ...options: Options) => any
   : (app: App, options: Options) => any
 
@@ -121,41 +134,39 @@ export type Plugin<Options = any[]> =
       install: PluginInstallFunction<Options>
     }
 
+export interface AppContext {
+  app: App // for devtools
+  config: AppConfig
+  mixins: ComponentOptions[]
+  components: Record<string, Component>
+  directives: Record<string, Directive>
+  provides: Record<string | symbol, any>
 
-    export interface AppContext {
-      app: App // for devtools
-      config: AppConfig
-      mixins: ComponentOptions[]
-      components: Record<string, Component>
-      directives: Record<string, Directive>
-      provides: Record<string | symbol, any>
-    
-      /**
-       * Cache for merged/normalized component options
-       * Each app instance has its own cache because app-level global mixins and
-       * optionMergeStrategies can affect merge behavior.
-       * @internal
-       */
-      optionsCache: WeakMap<ComponentOptions, MergedComponentOptions>
-      /**
-       * Cache for normalized props options
-       * @internal
-       */
-      propsCache: WeakMap<ConcreteComponent, NormalizedPropsOptions>
-      /**
-       * Cache for normalized emits options
-       * @internal
-       */
-      emitsCache: WeakMap<ConcreteComponent, ObjectEmitsOptions | null>
-      /**
-       * HMR only
-       * @internal
-       */
-      reload?: () => void
-      /**
-       * v2 compat only
-       * @internal
-       */
-      filters?: Record<string, Function>
-    }
-    
+  /**
+   * Cache for merged/normalized component options
+   * Each app instance has its own cache because app-level global mixins and
+   * optionMergeStrategies can affect merge behavior.
+   * @internal
+   */
+  optionsCache: WeakMap<ComponentOptions, MergedComponentOptions>
+  /**
+   * Cache for normalized props options
+   * @internal
+   */
+  propsCache: WeakMap<ConcreteComponent, NormalizedPropsOptions>
+  /**
+   * Cache for normalized emits options
+   * @internal
+   */
+  emitsCache: WeakMap<ConcreteComponent, ObjectEmitsOptions | null>
+  /**
+   * HMR only
+   * @internal
+   */
+  reload?: () => void
+  /**
+   * v2 compat only
+   * @internal
+   */
+  filters?: Record<string, Function>
+}

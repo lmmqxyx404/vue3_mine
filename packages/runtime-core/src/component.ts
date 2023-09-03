@@ -4,7 +4,7 @@
  * @LastEditors: lmmqxyx
  * @LastEditTime: 2023-09-02 23:25:16
  * @FilePath: /vue3_mine/packages/runtime-core/src/component.ts
- * @Description: 
+ * @Description:
  */
 
 type CompileFunction = (
@@ -58,7 +58,6 @@ export type Component<
 > =
   | ConcreteComponent<Props, RawBindings, D, C, M>
   | ComponentPublicInstanceConstructor<Props>
-
 
 export type Data = Record<string, unknown>
 

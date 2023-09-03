@@ -4,7 +4,7 @@
  * @LastEditors: lmmqxyx
  * @LastEditTime: 2023-09-02 23:54:43
  * @FilePath: /vue3_mine/packages/runtime-core/src/componentOptions.ts
- * @Description: 
+ * @Description:
  */
 import { ComputedGetter, WritableComputedOptions } from '@vue/reactivity'
 
@@ -12,7 +12,6 @@ export type ComputedOptions = Record<
   string,
   ComputedGetter<any> | WritableComputedOptions<any>
 >
-
 
 export interface MethodOptions {
   [key: string]: Function
@@ -67,7 +66,6 @@ export type ComponentOptionsMixin = ComponentOptionsBase<
   any,
   any
 >
-
 
 /**
  * Subset of compiler options that makes sense for the runtime.

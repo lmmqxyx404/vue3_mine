@@ -4,7 +4,7 @@
  * @LastEditors: lmmqxyx
  * @LastEditTime: 2023-09-02 23:56:13
  * @FilePath: /vue3_mine/packages/runtime-core/src/componentProps.ts
- * @Description: 
+ * @Description:
  */
 
 export interface PropOptions<T = any, D = T> {
@@ -26,7 +26,6 @@ const enum BooleanFlags {
   shouldCast,
   shouldCastTrue
 }
-
 
 type NormalizedProp =
   | null
