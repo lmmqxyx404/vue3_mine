@@ -21,6 +21,8 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
+    // If the following types were not imported.
+    // There would be a error.
     "types": ["vitest/globals", "puppeteer", "node"],
     // 解决 packages 之间互相共享
     "rootDir": ".",

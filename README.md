@@ -46,8 +46,9 @@ if you want to use common js file. You'd better use .cjs file or use the followi
 
 ## devDependencies
 `@babel/parser`: used in scripts/const-enum
-`MagicString`: used in scripts/const-enum
-
+`magic-string`: used in scripts/const-enum
+`"@types/node": "^16.4.7",` used in tsconfig.json
+`"puppeteer": "~19.6.0",` used in tsconfig.json
 
 # notes
 ## rollup to build a package
