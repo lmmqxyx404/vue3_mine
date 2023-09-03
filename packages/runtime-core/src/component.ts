@@ -2,7 +2,7 @@
  * @Author: lmmqxyx
  * @Date: 2023-08-18 22:23:58
  * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-02 23:25:16
+ * @LastEditTime: 2023-09-03 21:08:10
  * @FilePath: /vue3_mine/packages/runtime-core/src/component.ts
  * @Description:
  */
@@ -323,3 +323,39 @@ export interface ComponentInternalInstance {
    */
   ut?: (vars?: Record<string, string>) => void
 }
+
+/* istanbul ignore next */
+export function formatComponentName(
+  instance: ComponentInternalInstance | null,
+  Component: ConcreteComponent,
+  isRoot = false
+): string {
+  let name = getComponentName(Component)
+  if (!name && Component.__file) {
+    const match = Component.__file.match(/([^/\\]+)\.\w+$/)
+    if (match) {
+      name = match[1]
+    }
+  }
+
+  if (!name && instance && instance.parent) {
+    // try to infer the name based on reverse resolution
+    const inferFromRegistry = (registry: Record<string, any> | undefined) => {
+      for (const key in registry) {
+        if (registry[key] === Component) {
+          return key
+        }
+      }
+    }
+    name =
+      inferFromRegistry(
+        instance.components ||
+          (instance.parent.type as ComponentOptions).components
+      ) || inferFromRegistry(instance.appContext.components)
+  }
+
+  return name ? classify(name) : isRoot ? `App` : `Anonymous`
+}
+
+// dev only
+export const isRuntimeOnly = () => !compile

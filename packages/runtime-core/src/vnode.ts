@@ -2,12 +2,13 @@
  * @Author: lmmqxyx
  * @Date: 2023-09-02 23:21:09
  * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-03 17:56:55
+ * @LastEditTime: 2023-09-03 18:05:50
  * @FilePath: /vue3_mine/packages/runtime-core/src/vnode.ts
  * @Description:
  */
 import { ReactiveFlags, Ref } from '@vue/reactivity'
 import { ComponentPublicInstance } from './componentPublicInstance'
+import { ComponentInternalInstance } from './component'
 
 // TODO: Symbol.for syntax
 export const Text = Symbol.for('v-txt')
@@ -79,4 +80,8 @@ export interface VNode<
    * @internal
    */
   slotScopeIds: string[] | null
+  children: VNodeNormalizedChildren
+  component: ComponentInternalInstance | null
+  dirs: DirectiveBinding[] | null
+  transition: TransitionHooks<HostElement> | null
 }

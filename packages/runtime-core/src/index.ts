@@ -22,3 +22,27 @@ export type {
   CreateAppFunction,
   OptionMergeFunction
 } from './apiCreateApp'
+
+export { warn } from './warning'
+
+// 2.x COMPAT ------------------------------------------------------------------
+
+export { DeprecationTypes } from './compat/compatConfig'
+
+const _compatUtils = {
+  warnDeprecation,
+  createCompatVue,
+  isCompatEnabled,
+  checkCompatEnabled,
+  softAssertCompatEnabled
+}
+
+/**
+ * @internal only exposed in compat builds.
+ */
+export const compatUtils = (
+  __COMPAT__ ? _compatUtils : null
+) as typeof _compatUtils
+
+// For integration with runtime compiler
+export { registerRuntimeCompiler, isRuntimeOnly } from './component'

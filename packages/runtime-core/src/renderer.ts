@@ -1,4 +1,4 @@
-import { Component, Data } from './component'
+import { Component, ComponentInternalInstance, Data } from './component'
 import { RootHydrateFunction, createHydrationFunctions } from './hydration'
 import { VNode } from './vnode'
 
@@ -50,6 +50,21 @@ export interface RendererInternals<
   n: NextFn
   o: RendererOptions<HostNode, HostElement>
 }
+
+// These functions are created inside a closure and therefore their types cannot
+// be directly exported. In order to avoid maintaining function signatures in
+// two places, we declare them once here and use them inside the closure.
+type PatchFn = (
+  n1: VNode | null, // null means this is a mount
+  n2: VNode,
+  container: RendererElement,
+  anchor?: RendererNode | null,
+  parentComponent?: ComponentInternalInstance | null,
+  parentSuspense?: SuspenseBoundary | null,
+  isSVG?: boolean,
+  slotScopeIds?: string[] | null,
+  optimized?: boolean
+) => void
 
 export interface RendererOptions<
   HostNode = RendererNode,
