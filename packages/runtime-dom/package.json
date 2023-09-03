@@ -21,6 +21,8 @@
     ]
   },
   "dependencies": {
+    "@vue/shared": "3.3.4",
+    "@vue/runtime-core": "3.3.4",
     "csstype": "^3.1.1"
   }
 }
