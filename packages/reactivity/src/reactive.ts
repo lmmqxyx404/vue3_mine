@@ -1,5 +1,9 @@
 import { isObject, toRawType } from '@vue/shared'
-import { mutableHandlers, readonlyHandlers, shallowReactiveHandlers } from './baseHandlers'
+import {
+  mutableHandlers,
+  readonlyHandlers,
+  shallowReactiveHandlers
+} from './baseHandlers'
 import {
   mutableCollectionHandlers,
   readonlyCollectionHandlers,
@@ -95,7 +99,7 @@ export function reactive(target: object) {
 
 export declare const ShallowReactiveMarker: unique symbol
 
-export type ShallowReactive<T>=T&{[ShallowReactiveMarker]?:true}
+export type ShallowReactive<T> = T & { [ShallowReactiveMarker]?: true }
 
 /**
  * Shallow version of {@link reactive()}.
@@ -127,8 +131,16 @@ export type ShallowReactive<T>=T&{[ShallowReactiveMarker]?:true}
  * @param target - The source object.
  * @see {@link https://vuejs.org/api/reactivity-advanced.html#shallowreactive}
  */
-export function shallowReactive<T extends object>(target:T):ShallowReactive<T>{
-  return createReactiveObject(target,false,shallowReactiveHandlers,shallowCollectionHandlers,shallowReactiveMap)
+export function shallowReactive<T extends object>(
+  target: T
+): ShallowReactive<T> {
+  return createReactiveObject(
+    target,
+    false,
+    shallowReactiveHandlers,
+    shallowCollectionHandlers,
+    shallowReactiveMap
+  )
 }
 
 type Primitive = string | number | boolean | bigint | symbol | undefined | null

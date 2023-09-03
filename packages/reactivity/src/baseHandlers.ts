@@ -157,7 +157,7 @@ function createGetter(isReadonly = false, shallow = false) {
 }
 
 const set = /*#__PURE__*/ createSetter()
-const shallowSet= /*#__PURE__*/ createSetter(true)
+const shallowSet = /*#__PURE__*/ createSetter(true)
 
 function createSetter(shallow = false) {
   return function set(
@@ -253,4 +253,8 @@ export const readonlyHandlers: ProxyHandler<object> = {
   }
 }
 
-export const shallowReactiveHandlers=/*#__PURE__*/ extend({},mutableHandlers,{get:shallowGet,set:shallowSet})
+export const shallowReactiveHandlers = /*#__PURE__*/ extend(
+  {},
+  mutableHandlers,
+  { get: shallowGet, set: shallowSet }
+)
