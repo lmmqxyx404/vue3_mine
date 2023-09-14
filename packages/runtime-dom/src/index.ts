@@ -13,6 +13,7 @@ import {
   Renderer,
   compatUtils,
   createRenderer,
+  isRuntimeOnly,
   warn
 } from '@vue/runtime-core'
 import { nodeOps } from './nodeOps'

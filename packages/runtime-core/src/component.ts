@@ -6,6 +6,9 @@
  * @FilePath: /vue3_mine/packages/runtime-core/src/component.ts
  * @Description:
  */
+import { CompilerOptions } from '@vue/compiler-core'
+
+export type Data = Record<string, unknown>
 
 type CompileFunction = (
   template: string | object,
@@ -59,7 +62,7 @@ export type Component<
   | ConcreteComponent<Props, RawBindings, D, C, M>
   | ComponentPublicInstanceConstructor<Props>
 
-export type Data = Record<string, unknown>
+
 
 /**
  * We expose a subset of properties on the internal instance as they are
