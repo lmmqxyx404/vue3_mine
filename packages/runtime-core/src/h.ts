@@ -1,4 +1,4 @@
-import { VNodeProps } from "./vnode"
+import { VNode, VNodeArrayChildren, VNodeProps } from "./vnode"
 
 type RawProps = VNodeProps & {
   // used to differ from a single VNode object as children

@@ -85,3 +85,14 @@ export interface VNode<
   dirs: DirectiveBinding[] | null
   transition: TransitionHooks<HostElement> | null
 }
+
+type VNodeChildAtom =
+  | VNode
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | void
+
+export type VNodeArrayChildren = Array<VNodeArrayChildren | VNodeChildAtom>
