@@ -11,7 +11,7 @@ There are 3 parts consisting the Vue3--```compiler``` ```runtime``` ```reactive`
 # Before write down the code
 The project is managed by pnpm.
 The code is supported by TypeScript.
-In the root package, it should addd devDependencies.
+In the root package, it should add devDependencies.
 # some npm packages.
 ## esm-bundler
 transfer ES6 to ES5
