@@ -6,7 +6,23 @@
  * @FilePath: /vue3_mine/packages/runtime-core/src/components/Suspense.ts
  * @Description:
  */
+import { RendererElement, RendererNode } from '..'
+import { ComponentInternalInstance } from '../component'
+import { MoveType, SetupRenderEffectFn } from '../renderer'
 import { VNode } from '../vnode'
+
+export interface SuspenseProps {
+  onResolve?: () => void
+  onPending?: () => void
+  onFallback?: () => void
+  timeout?: string | number
+  /**
+   * Allow suspense to be captured by parent suspense
+   *
+   * @default false
+   */
+  suspensible?: boolean
+}
 
 export interface SuspenseBoundary {
   vnode: VNode<RendererNode, RendererElement, SuspenseProps>

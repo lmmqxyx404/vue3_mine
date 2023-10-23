@@ -1,4 +1,6 @@
+import { App, CreateAppFunction } from './apiCreateApp'
 import { Component, ComponentInternalInstance, Data } from './component'
+import { SuspenseBoundary } from './components/Suspense'
 import { RootHydrateFunction, createHydrationFunctions } from './hydration'
 import { VNode } from './vnode'
 
@@ -7,20 +9,17 @@ export interface Renderer<HostElement = RendererElement> {
   createApp: CreateAppFunction<HostElement>
 }
 
+export interface HydrationRenderer extends Renderer<Element | ShadowRoot> {
+  hydrate: RootHydrateFunction
+}
+
 export type RootRenderFunction<HostElement = RendererElement> = (
   vnode: VNode | null,
   container: HostElement,
   isSVG?: boolean
 ) => void
 
-export interface HydrationRenderer extends Renderer<Element | ShadowRoot> {
-  hydrate: RootHydrateFunction
-}
 
-export type CreateAppFunction<HostElement> = (
-  rootComponent: Component,
-  rootProps?: Data | null
-) => App<HostElement>
 
 // Renderer Node can technically be any object in the context of core renderer
 // logic - they are never directly operated on and always passed to the node op
@@ -31,6 +30,32 @@ export interface RendererNode {
 }
 
 export interface RendererElement extends RendererNode {}
+
+type UnmountFn = (
+  vnode: VNode,
+  parentComponent: ComponentInternalInstance | null,
+  parentSuspense: SuspenseBoundary | null,
+  doRemove?: boolean,
+  optimized?: boolean
+) => void
+
+/// used in suspense.ts
+export const enum MoveType {
+  ENTER,
+  LEAVE,
+  REORDER
+}
+
+export type SetupRenderEffectFn = (
+  instance: ComponentInternalInstance,
+  initialVNode: VNode,
+  container: RendererElement,
+  anchor: RendererNode | null,
+  parentSuspense: SuspenseBoundary | null,
+  isSVG: boolean,
+  optimized: boolean
+) => void
+
 
 // An object exposing the internals of a renderer, passed to tree-shakeable
 // features so that they can be decoupled from this file. Keys are shortened
