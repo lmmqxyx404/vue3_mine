@@ -2,14 +2,15 @@
  * @Author: lmmqxyx
  * @Date: 2023-09-02 23:21:09
  * @LastEditors: lmmqxyx
- * @LastEditTime: 2023-09-03 21:07:30
- * @FilePath: /vue3_mine/packages/runtime-dom/src/index.ts
+ * @LastEditTime: 2023-10-24 10:10:17
+ * @FilePath: \vue3_mine\packages\runtime-dom\src\index.ts
  * @Description:
  */
 
 import {
   App,
   DeprecationTypes,
+  HydrationRenderer,
   Renderer,
   compatUtils,
   createRenderer,
@@ -21,7 +22,6 @@ import { patchProp } from './patchProp'
 import { extend, isFunction, isHTMLTag, isSVGTag, isString } from '@vue/shared'
 import { CreateAppFunction } from '@vue/runtime-core'
 
-let renderer: Renderer<Element>
 
 export const createApp = ((...args) => {
   // 注意类型
@@ -74,6 +74,11 @@ export const createApp = ((...args) => {
 }) as CreateAppFunction<Element>
 
 const rendererOptions = /*#__PURE__*/ extend({ patchProp }, nodeOps)
+
+// lazy create the renderer - this makes core renderer logic tree-shakable
+// in case the user only imports reactivity utilities from Vue.
+// TODO: consider the type
+let renderer: Renderer<Element | ShadowRoot> | HydrationRenderer
 
 function ensureRenderer() {
   return (
