@@ -18,3 +18,7 @@ declare var __COMPAT__: boolean
 // used in vue/src/dev.ts
 declare var __BROWSER__: boolean
 declare var __ESM_BUNDLER__: boolean
+
+// Feature flags
+/**First used in vnode */
+declare var __FEATURE_SUSPENSE__: boolean

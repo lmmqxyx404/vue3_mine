@@ -11,3 +11,4 @@ export * from './general'
 export * from './domTagConfig'
 
 export const flag = 'vue3_mine'
+export * from './slotFlags'

@@ -55,3 +55,5 @@ export interface SuspenseBoundary {
   ): void
   unmount(parentSuspense: SuspenseBoundary | null, doRemove?: boolean): void
 }
+
+export const isSuspense = (type: any): boolean => type.__isSuspense

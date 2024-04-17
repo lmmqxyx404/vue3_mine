@@ -28,6 +28,7 @@
     "rootDir": ".",
     "paths": {
       "@vue/compat": ["packages/vue-compat/src"],
+      // 添加别名，因此可以正确跳转，注意 * 是直接匹配
       "@vue/*": ["packages/*/src"],
       "vue": ["packages/vue/src"]
     }
